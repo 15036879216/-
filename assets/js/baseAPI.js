@@ -4,4 +4,16 @@
 //​$.ajax() > ajaxPrefilter过滤器 -> 发送请求给服务器
 $.ajaxPrefilter((option) =>{
     option.url="http://www.liulongbin.top:3007"+option.url
+    //如果url中有'/my/'，就自动将标头添加进ajax中
+    if(option.url.includes('/my/')){
+        option.headers={
+            Authorization: localStorage.getItem("token")
+        }
+    }
+    option.complete=(res) => {
+        if(res.responseJSON.status ===1 && res.responseJSON.message === "身份认证失败！"){
+            localStorage.removeItem('token')
+            location.href='/login.html'
+        }
+    }
 })
