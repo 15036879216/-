@@ -32,7 +32,8 @@ const renderAvatar=(user) => {
     // nickname: ""
     // user_pic: null
     // username: "snk"
-    let uname=user.username||user.nickname;
+    //只有user.username用user.username，还有user.nickname就用user.nickname
+    let uname=user.username&&user.nickname;
     $('#welcome').html(`欢迎 ${uname}`)
     //没有上传头像
     if(user.user_pic == null){
@@ -40,7 +41,7 @@ const renderAvatar=(user) => {
     $(".text-avatar").html(uname[0].toUpperCase())
     }else{
         //上传头像
-        $(".layui-nav-img").arrt('src',user.user_pic)
+        $(".layui-nav-img").attr('src',user.user_pic)
         $(".text-avatar").hide()
     }
 }
