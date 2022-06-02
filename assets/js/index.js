@@ -33,7 +33,7 @@ const renderAvatar=(user) => {
     // user_pic: null
     // username: "snk"
     //只有user.username用user.username，还有user.nickname就用user.nickname
-    let uname=user.username&&user.nickname;
+    let uname=user.nickname || user.username;
     $('#welcome').html(`欢迎 ${uname}`)
     //没有上传头像
     if(user.user_pic == null){
@@ -57,4 +57,7 @@ $("#btnLogout").on("click",function(){
         
     
 })
+function change(){
+    $("#change").attr("class","layui-this").next().attr("class","")
+}
 
